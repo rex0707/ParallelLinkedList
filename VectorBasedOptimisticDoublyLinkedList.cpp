@@ -27,6 +27,7 @@
 #include <iostream>
 #include <vector>
 #include <omp.h>
+#include <string>
 
 /*********************************************************************************************
  * Global variables
@@ -45,7 +46,7 @@ void Init_locks();
 
 void Destroy_locks();
 
-void Print();
+void Print( const std::string& str );
 
 bool Validate( const int& prev, const int& curr );
 
@@ -59,7 +60,7 @@ void AddFront( const int& Id );
 int main()
 {
   // Print the original list ************************************************************
-  Print();
+  Print("Initial list:");
   
   // 
   std::vector<int> Id = { 6, 9, -3, 7, -4, -2, 10, -1, 8 };
@@ -75,7 +76,7 @@ int main()
   Destroy_locks();
   
   // Print the final list ***************************************************************
-  Print();
+  Print("Final list (OpenMP):");
   
   return 0;
 }
@@ -106,9 +107,9 @@ void Destroy_locks()
 /*********************************************************************************************
  * Print the list
  ********************************************************************************************/
-void Print()
+void Print( const std::string& str )
 {
-  std::cout << std::endl;
+  std::cout << std::endl << str << std::endl;
   
   int curr { Head };
   
